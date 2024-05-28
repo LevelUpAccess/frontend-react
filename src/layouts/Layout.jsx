@@ -1,4 +1,6 @@
 import { Outlet } from 'react-router-dom'
+import Sidebar from '../components/Sidebar'
+import Resumen from '../components/Resumen'
 
 // Los componentes van en mayuscula como si fueran clases
 
@@ -10,10 +12,16 @@ import { Outlet } from 'react-router-dom'
 
 export default function Layout() {
   return (
-    <div>
-      Layout
+    <div className='md:flex'>
+      <Sidebar/>
 
-      <Outlet></Outlet>
+      <main className='flex-1 h-screen overflow-y-scroll bg-gray-100'>
+      {/* OUTLET ES LA CONEXION DE LAS RUTAS DEL ROUTER, AUN ESTOY BATALLANDO PA ENTENDER ESTA COSA */}
+        <Outlet/>
+      </main>
+
+      <Resumen/>
+
     </div>
   )
 }
