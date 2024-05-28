@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-key */
 import Categoria from "./Categoria"
-import { categorias } from "../data/categorias"
 import useQuiosco from "../hooks/useQuiosco"
 
 export default function Sidebar() {
