@@ -1,6 +1,22 @@
 import { Outlet } from 'react-router-dom'
+import Modal from 'react-modal'
 import Sidebar from '../components/Sidebar'
 import Resumen from '../components/Resumen'
+import useQuiosco from '../hooks/useQuiosco'
+import ModalProducto from '../components/ModalProducto'
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
+Modal.setAppElement('#root')
 
 // Los componentes van en mayuscula como si fueran clases
 
@@ -11,17 +27,28 @@ import Resumen from '../components/Resumen'
 //Los hooks son funciones que mandas llamar con un parentesis.
 
 export default function Layout() {
+
+  const {modal, handleClickModal} = useQuiosco()
+
+  console.log(modal)
+
   return (
-    <div className='md:flex'>
-      <Sidebar/>
+    <>
+      <div className='md:flex'>
+        <Sidebar/>
+        <main className='flex-1 h-screen overflow-y-scroll bg-gray-100'>
+        {/* OUTLET ES LA CONEXION DE LAS RUTAS DEL ROUTER, AUN ESTOY BATALLANDO PA ENTENDER ESTA COSA */}
+          <Outlet/>
+        </main>
+        <Resumen/>
+      </div>
 
-      <main className='flex-1 h-screen overflow-y-scroll bg-gray-100'>
-      {/* OUTLET ES LA CONEXION DE LAS RUTAS DEL ROUTER, AUN ESTOY BATALLANDO PA ENTENDER ESTA COSA */}
-        <Outlet/>
-      </main>
+      <Modal isOpen = {modal} style={customStyles}>
+        <ModalProducto></ModalProducto>
+      </Modal>
 
-      <Resumen/>
 
-    </div>
+
+    </>
   )
 }
