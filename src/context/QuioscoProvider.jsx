@@ -2,8 +2,7 @@
 //useState es un hook incluido en react y es el mas utilizado, puede ser para estados variables, el estado cambia. cambia de acuerdo a ciertas acciones, solo se colocan en state las partes mas dinamicas de la pagina
 import { createContext, useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
-import axios from 'axios';
-
+import clienteAxios from '../config/axios';
 
 //EL PROVIDER ES UN FUNCION, PUEDE SER UN ARROW FUNCTION, Y SIEMPRE RETORNA ALGO
 
@@ -37,8 +36,7 @@ const QuioscoProvider = ({children}) => {
         try{
 
             //Variable de entorno local
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/api/categorias`);
-
+            const { data } = await clienteAxios('/api/categorias')
             
             setCategorias(data.data)
             setCategoriaActual(data.data[0])
