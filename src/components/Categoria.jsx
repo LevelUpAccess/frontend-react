@@ -13,7 +13,7 @@ export default function Categoria({categoria}) {
   return (
     <div className={`${resaltarCategoriaActual()} flex items-center gap-4 border w-full p-3 hover:bg-amber-400 cursor-pointer`}>
 
-
+        {/* Testeo de rama branch */}
         <img 
             alt="Imagen icono"
             src={`/img/icono_${icono}.svg`}
