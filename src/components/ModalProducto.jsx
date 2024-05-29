@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useQuiosco from "../hooks/useQuiosco"
 import { formatearDinero } from "../helpers";
 
 export default function ModalProducto() {
 
-    const { producto, handleClickModal } = useQuiosco();
+    const { producto, handleClickModal, handleAgregarPedido, pedido} = useQuiosco();
 
     //creamos un state de aqui porque nomas lo vamos a usar aqui: 
     const [cantidad, setCantidad] = useState(1);
+    const [edicion, setEdicion] = useState(false);
+    
 
-    console.log(producto)
+    //NO SE BIEN COMO JALA ESTA FREGADA, ES PARA HACER QUE NO SE PUEDAN METER DOS DEL MISMO EN EL CARRITO, PERO OCUPO VER EL VIDEO OTRA VEZ SIN SUEÑO
+    useEffect(() =>{
+        if(pedido.some( pedidoState => pedidoState.id === producto.id )) {
+            const productoEdicion = pedido.filter(pedidoState => pedidoState.id === 
+            producto.id)[0]
+
+            setCantidad(productoEdicion.cantidad)
+            setEdicion (true);
+        }
+
+    }, [pedido])
+
+    // console.log(producto)
 
 
   return (
@@ -75,8 +89,15 @@ export default function ModalProducto() {
             <button
                 type="button"
                 className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
+                                            //Aqui mezclamos el producto con la cantidad, ya que la cantidad
+                                            //no es parte del arreglo, pero de esta forma los metemos en la 
+                                            // misma bolsa
+                onClick={() =>{
+                    handleAgregarPedido({...producto, cantidad})
+                    handleClickModal()
+                }}
             >
-                Añadir al pedido
+                {edicion ? 'Guardar Cambios' : 'Agregar al pedido'}
 
             </button>
 
