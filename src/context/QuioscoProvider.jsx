@@ -2,7 +2,7 @@
 //useState es un hook incluido en react y es el mas utilizado, puede ser para estados variables, el estado cambia. cambia de acuerdo a ciertas acciones, solo se colocan en state las partes mas dinamicas de la pagina
 import { createContext, useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
-import { categorias as categoriasDB} from "../data/categorias"
+import axios from 'axios';
 
 
 //EL PROVIDER ES UN FUNCION, PUEDE SER UN ARROW FUNCTION, Y SIEMPRE RETORNA ALGO
@@ -18,9 +18,9 @@ const QuioscoProvider = ({children}) => {
     //AQUI ESTAMOS GENERANDO STATES
 
     // [Nombre del estate, funcion del estate(Set)]
-    const [categorias, setCategorias] = useState(categoriasDB);
+    const [categorias, setCategorias] = useState([]);
     //Categoria actual
-    const[categoriaActual, setCategoriaActual] = useState(categorias[0])
+    const[categoriaActual, setCategoriaActual] = useState({})
     const[modal, setModal] = useState(false)
     const[producto, setProducto] = useState(false)
     const [pedido, setPedido] = useState([])
@@ -31,6 +31,21 @@ const QuioscoProvider = ({children}) => {
         setTotal(nuevoTotal)
     }, [pedido])
 
+
+    //Se trae la respuesta tipo json de laravel del nombre de la categoria y su icono
+    const obtenerCategorias = async () => {
+        try{
+            const {data} = await axios('http://127.0.0.1:8000/api/categorias')
+            setCategorias(data.data)
+            setCategoriaActual(data.data[0])
+        }catch (error){
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        obtenerCategorias();
+    }, [])
 
 
     //Funcion para cambiar de categoria: (cuando en react hay un click-interaccion, tiene que iniciar con handle) 
