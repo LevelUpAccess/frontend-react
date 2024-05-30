@@ -1,15 +1,92 @@
+import React, { useState } from 'react';
 import{Link} from 'react-router-dom'
+import loginStyles from '../login.module.css'; // Importa los estilos CSS
+
 
 export default function Login() {
+
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const togglePassword = () => {
+      setPasswordVisible(!passwordVisible);
+    };
+
   return (
     //Para evitar meter codigo html vacio que no sirve de nada, lo mejor es meter una etiqueta vacia, la cual se le conoce como frag
     <>
-        <h1 className="text-4xl font-black">Inicia Sesión en LevelUp Access</h1>
+        {/* <h1 className="text-4xl font-black">Inicia Sesión en LevelUp Access</h1>
+        <p>Para comprar un videojuego debes iniciar sesión</p> */}
+
+        <div className="">
+        
+            <form action="">
+                <div className={`${loginStyles.container_form} ${loginStyles.body}`}>
+                    <div className={loginStyles.logo_form}>
+                        <img src="../img/logo2.png" alt="Logo LevelUpAccess"/>
+                    </div>
+
+                    <div className="texto_iniciar">
+                        <h2 className={loginStyles.textoInicia}>Inicia Sesión en tu cuenta de LevelUp Access</h2>
+                    </div>
+
+                    <div className={loginStyles.inputs}>
+                        <div className="mb-4">
+                            <input 
+                                type="email" 
+                                id="email"
+                                className={loginStyles.correo}
+                                name="email"
+                                placeholder="Dirección de correo electrónico"
+                            />
+                        </div>
+
+                        {/* Campo para el password */}
+
+                        <div className="">
+                            {/* <label
+                                className=""
+                                htmlFor="password"
+                            >Contraseña:</label> */}
+                            <input 
+                                type={passwordVisible ? 'text' : 'password'}
+                                id="password"
+                                className={loginStyles.password}
+                                name="password"
+                                placeholder="Password" 
+                            />
+                        </div> 
+
+                        {/* Toogle password */}
+
+                        <span className={loginStyles.toggle_password} onClick={togglePassword}>
+                            <img
+                                src={passwordVisible ? "../img/ojo.png" : "../img/visible.png"}
+                                alt="Mostrar contraseña"
+                                id="eyeIcon"
+                            />
+                        </span>
+                    </div>
+
+                    <input 
+                        type="submit" 
+                        value="Iniciar Sesión"
+                        className={`${loginStyles.btn_sesion} ${loginStyles.btn_sesionEstetica}`}
+                    />
+                    <nav className={`${loginStyles.crear_cuenta} ${loginStyles.crear_cuentaEstetica}`}>
+                        <Link to="/auth/registro">
+                            ¿No tienes cuenta? Crea una
+                        </Link>
+                    </nav>
+                </div>
+            </form>
+        </div>
+
+        
+        {/* <h1 className="text-4xl font-black">Inicia Sesión en LevelUp Access</h1>
         <p>Para comprar un videojuego debes iniciar sesión</p>
 
         <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
             <form action="">
-                {/* No sabia que asi se ponian los comentarios aqui, que jalada */}
 
                 <div className="mb-4">
                     <label
@@ -25,7 +102,7 @@ export default function Login() {
                     />
                 </div>
 
-                {/* Campo para el password */}
+
 
                 <div className="mb-4">
                     <label
@@ -49,13 +126,9 @@ export default function Login() {
                 />
                 
             </form>
-        </div>
+        </div> */}
 
-        <nav className="mt-5 ">
-            <Link to="/auth/registro">
-                ¿No tienes cuenta? Crea una
-            </Link>
-        </nav>
+    
     </>
   )
 }
