@@ -27,6 +27,7 @@ export default function Registro() {
         try{
             const {data} = await clienteAxios.post('/api/registro', datos)
             console.log(data.token)
+            setErrores([])
         } catch (error){
             setErrores(Object.values(error.response.data.errors))
         }
@@ -47,6 +48,7 @@ export default function Registro() {
             >
                 
                 {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>) : null}
+
                 <div className="mb-4">
                     <label
                         className="text-slate-800"
