@@ -102,6 +102,37 @@ const QuioscoProvider = ({children}) => {
     // console.log(categorias)
 
 
+    const handleSubmitNuevaOrden = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        try {
+            const {data} = await clienteAxios.post('/api/pedidos', 
+            {
+                total,
+                productos: pedido.map(producto => {
+                    return {
+                        id: producto.id,
+                        cantidad: producto.cantidad
+                    }
+                })
+            }, 
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            } )
+
+            toast.success(data.message);
+            setTimeout(() => {
+                setPedido([])
+            }, 1000);
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
     //SIEMRPE LO QUE RETURNES, ES LA PARTE DE LA PRESENTACION, VAN A SER VARIABLES O FUNCIONES QUE COLOQUES EN ESTE PROVIDER
     return (
         <QuioscoContext.Provider
@@ -118,7 +149,8 @@ const QuioscoProvider = ({children}) => {
                 handleAgregarPedido,
                 handleEditarCantidad,
                 handleEliminarProductoPedido,
-                total
+                total,
+                handleSubmitNuevaOrden
             }}
         >{children}</QuioscoContext.Provider>
     )
