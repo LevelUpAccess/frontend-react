@@ -30,7 +30,7 @@ export default function Registro() {
                     </div>
 
                     <div className="texto_iniciar">
-                        <h2 className={registroStyles.textoInicia}>Registrate en LevelUp Access</h2>
+                        <h2 className={registroStyles.textoInicia}>Regístrate en LevelUp Access</h2>
                     </div>
 
                     <div className={registroStyles.inputs}>
