@@ -18,7 +18,6 @@ export default function Login() {
         <p>Para comprar un videojuego debes iniciar sesión</p> */}
 
         <div className="">
-        
             <form action="">
                 <div className={`${loginStyles.container_form} ${loginStyles.body}`}>
                     <div className={loginStyles.logo_form}>
@@ -72,12 +71,13 @@ export default function Login() {
                         value="Iniciar Sesión"
                         className={`${loginStyles.btn_sesion} ${loginStyles.btn_sesionEstetica}`}
                     />
+
                     <nav className={`${loginStyles.crear_cuenta} ${loginStyles.crear_cuentaEstetica}`}>
                         <Link to="/auth/registro">
                             ¿No tienes cuenta? Crea una
                         </Link>
                     </nav>
-                </div>
+                </div> {/* ESTE ES EL DIV DEL BODY*/}
             </form>
         </div>
 

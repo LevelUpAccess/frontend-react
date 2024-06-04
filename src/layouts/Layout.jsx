@@ -50,7 +50,8 @@ export default function Layout() {
       </Modal>
 
 
-      <ToastContainer></ToastContainer>
+      <ToastContainer>
+              </ToastContainer>
 
 
 
