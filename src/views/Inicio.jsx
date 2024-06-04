@@ -10,7 +10,14 @@ export default function Inicio() {
   const { categoriaActual } = useQuiosco()
 
   //consulta SWR
-  const fetcher = () => clienteAxios('/api/productos').then(data => data.data)
+  const token = localStorage.getItem('AUTH_TOKEN');
+
+
+  const fetcher = () => clienteAxios('/api/productos', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }).then(data => data.data)
   const { data, error, isLoading } = useSWR('/api/productos', fetcher, {
     refreshInterval: 1000
   })
@@ -28,10 +35,6 @@ export default function Inicio() {
 
   return (
     <>
-      <h1 className='text-4xl font-black'>{categoriaActual.nombre}</h1>
-      <p className='text-2xl my-10'>
-        Elige y personaliza tu pedido a continuación.
-      </p>
 
       <div className="grid gap-4 grid-cols01 md:grid-cols-2 xl:grid-cols-3">
 
@@ -39,6 +42,7 @@ export default function Inicio() {
           <Producto
             key={producto.imagen}
             producto={producto}
+            botonAgregar={true}
           />
         ))}
       </div>

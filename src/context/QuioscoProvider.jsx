@@ -33,10 +33,16 @@ const QuioscoProvider = ({children}) => {
 
     //Se trae la respuesta tipo json de laravel del nombre de la categoria y su icono
     const obtenerCategorias = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+
         try{
 
             //Variable de entorno local
-            const { data } = await clienteAxios('/api/categorias')
+            const { data } = await clienteAxios('/api/categorias', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                  }
+            })
             
             setCategorias(data.data)
             setCategoriaActual(data.data[0])
@@ -131,7 +137,31 @@ const QuioscoProvider = ({children}) => {
         }
     }
 
+    const handleClickCompletarPedido = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        try {
+            await clienteAxios.put(`/api/pedidos/${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
+    const handleClickProductoAgotado = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        try {
+            await clienteAxios.put(`/api/productos/${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     //SIEMRPE LO QUE RETURNES, ES LA PARTE DE LA PRESENTACION, VAN A SER VARIABLES O FUNCIONES QUE COLOQUES EN ESTE PROVIDER
     return (
@@ -150,7 +180,9 @@ const QuioscoProvider = ({children}) => {
                 handleEditarCantidad,
                 handleEliminarProductoPedido,
                 total,
-                handleSubmitNuevaOrden
+                handleSubmitNuevaOrden,
+                handleClickCompletarPedido,
+                handleClickProductoAgotado
             }}
         >{children}</QuioscoContext.Provider>
     )
