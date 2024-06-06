@@ -6,6 +6,8 @@ import Sidebar from '../components/Sidebar'
 import Resumen from '../components/Resumen'
 import useQuiosco from '../hooks/useQuiosco'
 import ModalProducto from '../components/ModalProducto'
+import styles from '../layout.module.css'; // Importa los estilos CSS
+
 
 const customStyles = {
   content: {
@@ -41,6 +43,12 @@ export default function Layout() {
         <main className='flex-1 h-screen overflow-y-scroll bg-gray-100'>
         {/* OUTLET ES LA CONEXION DE LAS RUTAS DEL ROUTER, AUN ESTOY BATALLANDO PA ENTENDER ESTA COSA */}
           <Outlet/>
+
+          <div className={styles.ayuda}>
+            <a href="#">
+              <img src="../img/paleta.png" alt="Icono de ayuda" />
+            </a>
+          </div>
         </main>
         <Resumen/>
       </div>
