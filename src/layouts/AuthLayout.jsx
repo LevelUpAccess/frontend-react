@@ -16,6 +16,13 @@ export default function AuthLayout() {
         </h1>
       </div>
 
+
+      <div className={styles.ayuda}>
+        <a href="#">
+          <img src="../img/paleta.png" alt="Icono de ayuda" />
+        </a>
+      </div>
+
         {/* <img 
         src = '../img/logo.svg' 
         alt='Imagen del logo' 
