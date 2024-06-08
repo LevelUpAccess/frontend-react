@@ -1,16 +1,36 @@
 import {Outlet} from 'react-router-dom'
+import{Link} from 'react-router-dom'
+import styles from '../styles/nav.module.css'; // Importa los estilos CSS
+
 
 export default function AuthLayout() {
   return (
-    <main className='max-w-4xl m-auto mt-10 md:mt-28 flex flex-col md:flex-row items-center'>
-        <img 
+    <main>
+
+      <div className={styles.navegacion}>
+        <h1 className={styles.title}>
+          <Link to="#">
+            <img className={styles.logo} src="../img/logo2.png" alt="LevelUp Access logo"/>
+          </Link>
+          LevelUp <span className={styles.rojo}>Access</span>
+        </h1>
+      </div>
+
+
+      <div className={styles.ayuda}>
+        <a href="#">
+          <img src="../img/paleta.png" alt="Icono de ayuda" />
+        </a>
+      </div>
+
+        {/* <img 
         src = '../img/logo.svg' 
         alt='Imagen del logo' 
         className='max-w-xs'>
             
-        </img>
+        </img> */}
 
-        <div className='p-10 w-full'>
+        <div className>
             <Outlet/>
         </div>
     </main>
