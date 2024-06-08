@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'titulo';
-    src: url("Fuente que si tiene el usuario pues jala"), url(fonts/Rajdhani-Bold.ttf);
+    src: url("Fuente que si tiene el usuario pues jala"), url(../fonts/Rajdhani-Bold.ttf);
 }
 
 *, *::before, *::after{

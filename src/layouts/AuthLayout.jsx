@@ -1,6 +1,6 @@
 import {Outlet} from 'react-router-dom'
 import{Link} from 'react-router-dom'
-import styles from '../nav.module.css'; // Importa los estilos CSS
+import styles from '../styles/nav.module.css'; // Importa los estilos CSS
 
 
 export default function AuthLayout() {

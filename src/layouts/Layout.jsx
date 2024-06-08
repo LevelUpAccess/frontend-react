@@ -6,7 +6,8 @@ import Sidebar from '../components/Sidebar'
 import Resumen from '../components/Resumen'
 import useQuiosco from '../hooks/useQuiosco'
 import ModalProducto from '../components/ModalProducto'
-import styles from '../layout.module.css'; // Importa los estilos CSS
+import stylesSigned from '../styles/navSigned.module.css'; // Importa los estilos CSS
+import{Link} from 'react-router-dom'
 
 
 const customStyles = {
@@ -38,20 +39,43 @@ export default function Layout() {
 
   return (
     <>
+    <main>
+
+      <div className={stylesSigned.navegacion}>
+          <h1 className={stylesSigned.title}>
+              <Link to="#">
+                <img className={stylesSigned.logo} src="../img/logo2.png" alt="LevelUp Access logo"/>
+              </Link>
+              LevelUp <span className={stylesSigned.rojo}>Access</span>
+          </h1>
+
+          <div className={stylesSigned.buscar_container}>
+            <i className={`fas fa-search lupa ${stylesSigned.lupa}`} />
+            <input type="text" className={stylesSigned.buscar_barra} placeholder="Buscar"/>
+          </div>
+
+          <ul className={stylesSigned.iconos_menu}>        
+            <li className=""><a href="#"><i className={`fas fa-heart ${stylesSigned.icono_corazon}`}></i></a></li>
+            <li className=""><a href="#"><i className={`fas fa-shopping-cart ${stylesSigned.icono_carrito}`}></i></a></li>
+          </ul>
+
+      </div>
+
       <div className='md:flex'>
         <Sidebar/>
         <main className='flex-1 h-screen overflow-y-scroll bg-gray-100'>
         {/* OUTLET ES LA CONEXION DE LAS RUTAS DEL ROUTER, AUN ESTOY BATALLANDO PA ENTENDER ESTA COSA */}
           <Outlet/>
 
-          <div className={styles.ayuda}>
+          <div className={stylesSigned.ayuda}>
             <a href="#">
               <img src="../img/paleta.png" alt="Icono de ayuda" />
             </a>
           </div>
         </main>
         <Resumen/>
-      </div>
+      </div> 
+    </main>
 
       <Modal isOpen = {modal} style={customStyles}>
         <ModalProducto></ModalProducto>

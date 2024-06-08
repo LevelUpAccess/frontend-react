@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import{Link} from 'react-router-dom'
-import loginStyles from '../login.module.css'; // Importa los estilos CSS
+import loginStyles from '../styles/login.module.css'; // Importa los estilos CSS
 
 
 export default function Login() {

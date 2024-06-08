@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
-import registroStyles from '../register.module.css'; // Importa los estilos CSS
+import registroStyles from '../styles/register.module.css'; // Importa los estilos CSS
 
 
 export default function Registro() {
