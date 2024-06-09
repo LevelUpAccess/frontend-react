@@ -24,6 +24,8 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
+// comentario para agregar la branch design
+
 // Los componentes van en mayuscula como si fueran clases
 
 //Si lo ves con mayusculas al inicio es un buen indicativo de que es un componente, si lo ves con "use", eso muy probablemente sea un hook, y un hook es una funcion.
