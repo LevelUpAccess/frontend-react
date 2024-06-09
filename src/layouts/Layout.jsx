@@ -3,7 +3,7 @@ import Modal from 'react-modal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Sidebar from '../components/Sidebar'
-import Resumen from '../components/Resumen'
+
 import useQuiosco from '../hooks/useQuiosco'
 import ModalProducto from '../components/ModalProducto'
 import { useAuth } from '../hooks/useAuth'
@@ -61,7 +61,9 @@ export default function Layout() {
 
           <ul className={stylesSigned.iconos_menu}>        
             <li className=""><a href="#"><i className={`fas fa-heart ${stylesSigned.icono_corazon}`}></i></a></li>
-            <li className=""><a href="#"><i className={`fas fa-shopping-cart ${stylesSigned.icono_carrito}`}></i></a></li>
+            <Link to="/carrito">
+              <li className=""><a href="#"><i className={`fas fa-shopping-cart ${stylesSigned.icono_carrito}`}></i></a></li>
+            </Link>
           </ul>
 
           <ul className={stylesSigned.cuenta_menu}>        
@@ -83,7 +85,7 @@ export default function Layout() {
               </div>
             </main>
             
-            <Resumen/>
+            {/* <Resumen/> */}
           </div> 
         </main>
 
