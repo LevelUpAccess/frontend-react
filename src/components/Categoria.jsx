@@ -14,7 +14,7 @@ export default function Categoria({categoria}) {
     <div className={`${resaltarCategoriaActual()} flex items-center gap-4 p-3 hover:bg-[#202020] cursor-pointer transition duration-300 rounded-xl`}>
         <img 
             alt="Imagen icono"
-            src={`/img/icono_${icono}.svg`}
+            src={`/img/icono_${icono}.png`}
             className="w-12"
         />
 
