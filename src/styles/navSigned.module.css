@@ -202,17 +202,39 @@ main{
 .cuenta_menu li a{
     text-decoration: none;
     color: #6d6d6d;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
 }
 
+.cuenta_menu li a:hover{
+    transition: 0.3s;
+    color: #EF3340;
+    /* border-radius: 5px; */
+}
+
+.cuenta_menu button{
+    padding: 0 20px;
+    list-style-type: none;
+    transition: 0.3s;
+
+    text-decoration: none;
+    color: #6d6d6d;
+    font-size: 1.2rem;
+}
+
+.cuenta_menu button:hover{
+    transition: 0.3s;
+    color: #EF3340;
+    /* border-radius: 5px; */
+}
+    
 .icono_corazon{
     font-size: 1.3rem;
     margin-right: 8px; /* Espacio entre el icono y el texto */
 }
-
+    
 .icono_carrito{
     font-size: 1.3rem;
     margin-right: 8px; /* Espacio entre el icono y el texto */
 }
-
+    
   

@@ -9,18 +9,18 @@ export default function Sidebar() {
     const {logout, user} = useAuth({middleware: 'auth'})
 
     return (
-        <aside className="md:w-72">
+        <aside style={{ marginTop: '70px' }} className="mt-6 md:w-72 bg-[#121212]">
             <div className="p-4">
                 <img 
-                    className="w-40"
-                    src="img/logo.svg"
+                    className="w-20 mx-auto"
+                    src="img/avatar.png"
                     alt="Imagen logo"
                 />
             </div>
 
-            <p className="my-10 text-xl text-center">Bienvenido: {user?.name}</p>
+            <p className="my-10 text-xl text-center text-white">User: {user?.name}</p>
 
-            <div className="mt-10">
+            <div className="mt-10 text-white">
                 {categorias.map( categoria => (
                     <Categoria
                     //React siempre espera una key siempre que estes iterando algo.
@@ -30,7 +30,7 @@ export default function Sidebar() {
                 ))}
             </div>
 
-            <div className="my-5 py-5">
+            {/* <div className="my-5 py-5">
                 <button 
                     type="button" 
                     className="text-center bg-red-500 w-full p-3 font-bold text-white truncate"
@@ -40,7 +40,7 @@ export default function Sidebar() {
                 Cancelar Orden
                 
                 </button>
-            </div>
+            </div> */}
             
         </aside>
   )
