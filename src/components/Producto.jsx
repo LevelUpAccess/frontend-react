@@ -13,8 +13,9 @@ export default function Producto({producto, botonAgregar = false, botonDisponibl
     <div className="p-3 shadow bg-[#202020] rounded">
         <img 
             alt={`imagen ${nombre}`} 
-            className = "w-full"
+            // className = "w-50"
             src= {`/img/${imagen}.jpg`}
+            style={{ width: '700px',  height: '600px'}}
         />
 
         <div className="p-5">
