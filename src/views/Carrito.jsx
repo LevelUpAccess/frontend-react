@@ -4,12 +4,8 @@ import Resumen from '../components/Resumen'
 export default function Carrito() {
   return (
     <div>
-        <Nav/>
-
-        <Resumen></Resumen>
-
-
-      
+      <Nav/>
+        <Resumen></Resumen>  
     </div>
   )
 }

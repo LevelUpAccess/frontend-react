@@ -77,6 +77,9 @@ const QuioscoProvider = ({children}) => {
                             //categoria, solo el
                             //producto
     const handleAgregarPedido = ({categoria_id, ...producto}) =>{
+
+        // console.log(producto)
+
         //REVISA SI UN ELEMENTO YA EXISTE EN EL ARREGLO, O ACTUALIZAMOS LA CANTIDAD QUE EL USUARIO DESEE
         if(pedido.some( pedidoState => pedidoState.id === producto.id )) {
             const pedidoActualizado = pedido.map(pedidoState => pedidoState.id === 
