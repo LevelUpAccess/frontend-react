@@ -8,6 +8,7 @@ import AdminLayout from './layouts/AdminLayout'
 import Ordenes from './views/Ordenes'
 import Productos from './views/Productos'
 import Carrito from './views/Carrito'
+import Bienvenida from './views/Bienvenida'
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
         path: '/auth',
         element: <AuthLayout/>,
         children: [
+            {
+                // index: true,
+                path: '/auth/bienvenida',
+                element: <Bienvenida/>
+            },
             {
                 // index: true,
                 path: '/auth/login',

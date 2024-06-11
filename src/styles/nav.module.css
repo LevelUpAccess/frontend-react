@@ -49,6 +49,7 @@ main{
     align-items: center;
     /* min-height: 8vh;  */
     background-color: #121212;
+    z-index: 1;
 }
 
 .rojo{

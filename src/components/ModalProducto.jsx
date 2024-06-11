@@ -32,7 +32,7 @@ export default function ModalProducto() {
             <img 
                 alt={`Imagen Producto ${producto.nombre}`} 
                 src={`/img/${producto.imagen}.jpg`}
-                style={{ width: '600px',  height: '400px'}}
+                style={{ width: '600px',  height: '400px', }}
             />
 
         </div>
