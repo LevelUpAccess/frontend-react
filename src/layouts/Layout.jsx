@@ -49,7 +49,7 @@ export default function Layout() {
 
       <div className={stylesSigned.navegacion}>
           <h1 className={stylesSigned.title}>
-              <Link to="#">
+              <Link to="/">
                 <img className={stylesSigned.logo} src="../img/logo2.png" alt="LevelUp Access logo"/>
               </Link>
               LevelUp <span className={stylesSigned.rojo}>Access</span>

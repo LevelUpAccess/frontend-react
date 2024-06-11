@@ -1,4 +1,5 @@
 import bienvenidaStyles from '../styles/bienvenida.module.css'; // Importa los estilos CSS
+import{Link} from 'react-router-dom'
 
 export default function Bienvenida() {
   return (
@@ -25,9 +26,9 @@ export default function Bienvenida() {
             <h2 className="bienvenida-texto">
                 Descubre lo que LevelUp Access tiene para ti, lo mejor <br/> está por venir!
             </h2>
-            <a href="views/iniciar-sesion.html" className={bienvenidaStyles.empezar_boton}>
+            <Link to = "../login" className={bienvenidaStyles.empezar_boton}>
                 Empezar
-            </a>
+            </Link>
         </div>
       
     </div>
