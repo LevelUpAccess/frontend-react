@@ -1,0 +1,137 @@
+/* CAMBIOS HECHOS POR RICARDO GARAYZAR */
+
+:root {
+    --color1: #FF0000;
+    --color2: #FF7F00;
+    --color3: #FFFF00;
+    --color4: #00FF00;
+    --color5: #0000FF;
+    --color6: #4B0082;
+    --color7: #8B00FF;
+    --color8: #FFC0CB;
+    --color9: #00CED1;
+    --color10: #FFD700;
+    --color11: #ADFF2F;
+    --color12: #FF4500;
+  
+    --color13: #FF6666;
+    --color14: #FFCC66;
+    --color15: #FFFF66;
+    --color16: #66FF66;
+    --color17: #6666FF;
+    --color18: #A366FF;
+    --color19: #FF66CC;
+    --color20: #FA8072;
+    --color21: #00FA9A;
+    --color22: #FFD700;
+    --color23: #8A2BE2;
+    --color24: #DC143C;
+  
+    --color25: #FF9999;
+    --color26: #FFCC99;
+    --color27: #FFFF99;
+    --color28: #99FF99;
+    --color29: #9999FF;
+    --color30: #CC99FF;
+    --color31: #FF99CC;
+    --color32: #FFB6C1;
+    --color33: #00FF7F;
+    --color34: #FFD700;
+    --color35: #7B68EE;
+    --color36: #FF6347;
+  }
+  
+.ayuda {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 1000;
+    right: 4vw;
+    bottom: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.ayuda img {
+    width: 30px;
+    height: 30px;
+}
+  
+.controles-ajuste {
+    position: fixed;
+    bottom: 70px;
+    right: 4vw;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 300px;
+    height: 300px;
+  }
+  
+.color-selector {
+    margin-top: 10px;
+  }
+  
+.color-selector label {
+    font-weight: bold;
+  }
+  
+.color-selector input {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+.paletas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+.paleta-container {
+    display: flex;
+    align-items: center;
+  }
+  
+.paleta-container label {
+    display: flex;
+  }
+  
+.paleta-container .color {
+    width: 20px;
+    height: 20px;
+    margin: 0 1px;
+    border-radius: 3px;
+    border: 1px solid #000;
+  }
+  
+.buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+.aceptar-button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+.cancelar-button {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

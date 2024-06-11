@@ -9,6 +9,7 @@ import ModalProducto from '../components/ModalProducto'
 import { useAuth } from '../hooks/useAuth'
 import stylesSigned from '../styles/navSigned.module.css'; // Importa los estilos
 import{Link} from 'react-router-dom'
+import Colores from '../components/Colores'
 
 
 const customStyles = {
@@ -75,14 +76,12 @@ export default function Layout() {
           <div className='md:flex'>
             <Sidebar/>
             <main className='flex-1 h-screen overflow-y-scroll bg-gray-100'>
+
             {/* OUTLET ES LA CONEXION DE LAS RUTAS DEL ROUTER, AUN ESTOY BATALLANDO PA ENTENDER ESTA COSA */}
               <Outlet/>
+              <Colores></Colores>
 
-              <div className={stylesSigned.ayuda}>
-                <a href="#">
-                  <img src="../img/paleta.png" alt="Icono de ayuda" />
-                </a>
-              </div>
+
             </main>
             
             {/* <Resumen/> */}
