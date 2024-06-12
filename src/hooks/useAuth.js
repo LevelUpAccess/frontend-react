@@ -71,7 +71,7 @@ export const useAuth = ({middleware, url}) => {
         }
 
         if(middleware === 'auth' && error){
-            navigate('/auth/login')
+            navigate('/auth/bienvenida')
         }
     }, [user, error])
 

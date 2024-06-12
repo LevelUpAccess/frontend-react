@@ -95,7 +95,7 @@ export default function Login() {
                     <input 
                         type="submit" 
                         value="Iniciar Sesión"
-                        className={`${loginStyles.btn_sesion} ${loginStyles.btn_sesionEstetica}`}
+                        className={`${loginStyles.btn_sesion} cursor-pointer ${loginStyles.btn_sesionEstetica}`}
                     />
 
                     <nav className={`${loginStyles.crear_cuenta} ${loginStyles.crear_cuentaEstetica}`}>
