@@ -1,4 +1,4 @@
-/* CAMBIOS HECHOS POR RICARDO GARAYZAR */
+
 
 :root {
     --color1: #FF0000;
@@ -73,6 +73,7 @@
     z-index: 1000;
     width: 300px;
     height: 300px;
+    font-size: 14px;
   }
   
 .color-selector {
@@ -81,11 +82,13 @@
   
 .color-selector label {
     font-weight: bold;
+    font-size: 14px;
   }
   
 .color-selector input {
     width: 100%;
     margin-top: 10px;
+    
   }
   
 .paletas {

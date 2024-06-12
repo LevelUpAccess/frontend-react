@@ -1,11 +1,17 @@
-
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/colores.module.css'; // Importa los estilos
 
 export default function Colores() {
-    const [colorAdjust, setColorAdjust] = useState(0);
+    // Inicialización del estado desde localStorage
+    const [colorAdjust, setColorAdjust] = useState(() => {
+        const savedColorAdjust = localStorage.getItem('colorAdjust');
+        return savedColorAdjust !== null ? Number(savedColorAdjust) : 0;
+    });
     const [mostrarControles, setMostrarControles] = useState(false);
-    const [selectedPalette, setSelectedPalette] = useState(0);
+    const [selectedPalette, setSelectedPalette] = useState(() => {
+        const savedPalette = localStorage.getItem('selectedPalette');
+        return savedPalette !== null ? Number(savedPalette) : 0;
+    });
     const [originalColorAdjust, setOriginalColorAdjust] = useState(0);
 
     const paletas = [
@@ -18,12 +24,14 @@ export default function Colores() {
         const root = document.documentElement;
         const selectedColors = paletas[selectedPalette];
         selectedColors.forEach((color, idx) => {
-        root.style.setProperty(`--color${idx + 1}`, color);
+            root.style.setProperty(`--color${idx + 1}`, color);
         });
+        localStorage.setItem('selectedPalette', selectedPalette);
     }, [selectedPalette]);
 
     useEffect(() => {
         document.documentElement.style.filter = `hue-rotate(${colorAdjust}deg)`;
+        localStorage.setItem('colorAdjust', colorAdjust);
     }, [colorAdjust]);
 
     const handleChangeColorAdjust = (event) => {
@@ -44,47 +52,50 @@ export default function Colores() {
         setColorAdjust(originalColorAdjust);
         setMostrarControles(false);
     };
-  return (
-    <div>
-          <div className={styles.ayuda}>
-            <a href="#" onClick={toggleControles}>
-              <img src="../img/paleta.png" alt="Icono de configuración de color" />
-            </a>
-          </div>
 
-          {mostrarControles && (
-            <div className={styles['controles-ajuste']}>
-              <h2>Configuración de color</h2>
-              <p>Paso 1: Visualiza las paletas de colores:</p>
-              <div className={styles.paletas}>
-                {paletas.map((paleta, index) => (
-                  <div key={index} className={styles['paleta-container']}>
-                    <label>
-                      {paleta.map((color, idx) => (
-                        <div key={idx} className={styles.color} style={{ backgroundColor: color }}></div>
-                      ))}
-                    </label>
-                  </div>
-                ))}
-              </div>
-              <p>Paso 2: Ajusta el tono de color para personalizar la apariencia:</p>
-              <div className={styles['color-selector']}>
-                <label htmlFor="colorAdjust">Ajustar tono: </label>
-                <input
-                  type="range"
-                  id="colorAdjust"
-                  min="-180"
-                  max="180"
-                  value={colorAdjust}
-                  onChange={handleChangeColorAdjust}
-                />
-              </div>
-              <div className={styles.buttons}>
-                <button className={styles['aceptar-button']} onClick={closeControles}>Aceptar</button>
-                <button className={styles['cancelar-button']} onClick={cancelControles}>Cancelar</button>
-              </div>
+    const handlePaletteClick = (index) => {
+        setSelectedPalette(index);
+    };
+
+    return (
+        <div>
+            <div className={styles.ayuda}>
+                <a href="#" onClick={toggleControles}>
+                    <img src="../img/paleta.png" alt="Icono de configuración de color" />
+                </a>
             </div>
-          )}
+
+            {mostrarControles && (
+                <div className={styles['controles-ajuste']}>
+                    <h2>Configuración de color</h2>
+                    <p>Paso 1: Visualiza las paletas de colores:</p>
+                    <div className={styles.paletas}>
+                        {paletas.map((paleta, index) => (
+                            <div key={index} className={styles['paleta-container']} onClick={() => handlePaletteClick(index)}>
+                                {paleta.map((color, idx) => (
+                                    <div key={idx} className={styles.color} style={{ backgroundColor: color }}></div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                    <p>Paso 2: Ajusta el tono de color para personalizar la apariencia:</p>
+                    <div className={styles['color-selector']}>
+                        <label htmlFor="colorAdjust">Ajustar tono: </label>
+                        <input
+                            type="range"
+                            id="colorAdjust"
+                            min="-180"
+                            max="180"
+                            value={colorAdjust}
+                            onChange={handleChangeColorAdjust}
+                        />
+                    </div>
+                    <div className={styles.buttons}>
+                        <button className={styles['aceptar-button']} onClick={closeControles}>Aceptar</button>
+                        <button className={styles['cancelar-button']} onClick={cancelControles}>Cancelar</button>
+                    </div>
+                </div>
+            )}
         </div>
-  )
+    );
 }
