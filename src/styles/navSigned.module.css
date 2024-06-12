@@ -237,4 +237,15 @@ main{
     margin-right: 8px; /* Espacio entre el icono y el texto */
 }
     
+
+.small_icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .small_icon:hover {
+    opacity: 0.7; /* Opción 1: Cambiar la opacidad */
+    transform: scale(1.1); /* Opción 2: Hacer zoom */
+  }
   

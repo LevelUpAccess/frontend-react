@@ -308,3 +308,27 @@ body{
     font-size: 0.8vw;
     visibility: hidden;
 }
+
+
+.dinosaurio{
+    position: relative;
+    display: flex;
+    margin-left: 420px;
+    width: 17vw;
+}
+
+.container_nohay{
+    display: flex;
+    position: relative;
+    /* background-color: #036EEC; */
+    justify-content: center;
+    margin: 0 auto;
+    bottom: 20vh;
+}
+
+.nohay{
+    font-size: 1.5vw;
+    color: #6d6d6d;
+    font-weight: 400;
+}
+

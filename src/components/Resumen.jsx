@@ -26,9 +26,20 @@ export default function Resumen() {
       <div className={stylesResumen.productos_container}>
         <div className= {stylesResumen.juegos_container}>
           {pedido.length === 0 ? (
-              <p className="text-center text-2xl font-white">
-                No hay elementos en tu pedido aún
-              </p>
+            
+            
+            <div className="text-center text-2xl text-white bg-[#171717] rounded-xl p-4">
+              <div className="imagen_dinosaurio mb-4">
+                <video 
+                  src="../img/dinosaurio.mp4" 
+                  autoPlay 
+                  muted 
+                  loop 
+                  className={stylesResumen.dinosaurio} 
+                  />
+          
+              </div>
+            </div>
           ) : (
             pedido.map(producto => (
               <ResumenProducto
@@ -36,56 +47,68 @@ export default function Resumen() {
                 producto = {producto}
                 // className = {stylesResumen.juego_container}
               />
+
+
+              
             ))
           )}
         </div>
 
-        <div className={stylesResumen.total_container}>
-          <h1 className={stylesResumen.titulo_total}>Resumen de juegos y aplicaciones</h1>
-          
-          {/* ESTO NI SE ESTA USANDO */}
-          <div className={stylesResumen.total_datos}>
+        {!comprobarPedido() && (
+          <div className={stylesResumen.total_container}>
+            <h1 className={stylesResumen.titulo_total}>Resumen de juegos y aplicaciones</h1>
+            
+            {/* ESTO NI SE ESTA USANDO */}
+            {/* <div className={stylesResumen.total_datos}> */}
             {/* <h1>Precio</h1> */}
-            <h1 className={stylesResumen.precio_total}>$824MXN</h1>
-          </div>
-          {/* AQUI TERMINA LO QUE NI SE ESTA USANDO */}
+            {/* <h1 className={stylesResumen.precio_total}>$824MXN</h1> */}
+            {/* </div> */}
+            {/* AQUI TERMINA LO QUE NI SE ESTA USANDO */}
 
-          <div className={stylesResumen.total_datos}>
-            <h1>Impuestos</h1>
-            <h1 className={stylesResumen.imp}><span>Al finalizar la compra</span></h1>
-          </div>
-
-          {/* UNA RAYA */}
-          <div className={stylesResumen.raya}></div>
-
-          <p className="text-xl mt-10 text-white">
-            Total: {''}
-            {formatearDinero(total)}
-          </p>
-
-          <form 
-              className="w-full"
-              onSubmit={handleSubmit}
-          >
-
-            <div className="mt-5">
-              <input
-                  type="submit"
-                  className={`${comprobarPedido()? 
-                    'bg-indigo-100' : 
-                    'bg-[#036EEC] hover:bg-indigo-800 '}
-                    
-                    px-5 py-2 rounded uppercase font-bold text-white text-center w-full cursor-pointer`}
-                  value="CONFIRMAR COMPRA"
-                  disabled= {comprobarPedido()}
-              />
-
+            <div className={stylesResumen.total_datos}>
+              <h1>Impuestos</h1>
+              <h1 className={stylesResumen.imp}><span>Al finalizar la compra</span></h1>
             </div>
-          </form>
 
-        </div>
+            {/* UNA RAYA */}
+            <div className={stylesResumen.raya}></div>
+
+            <p className="text-xl mt-10 text-white">
+              Total: {''}
+              {formatearDinero(total)}
+            </p>
+
+            <form 
+                className="w-full"
+                onSubmit={handleSubmit}
+            >
+
+              <div className="mt-5">
+                <input
+                    type="submit"
+                    className={`${comprobarPedido()? 
+                      'bg-indigo-100' : 
+                      'bg-[#036EEC] hover:bg-indigo-800 '}
+                      
+                      px-5 py-2 rounded uppercase font-bold text-white text-center w-full cursor-pointer`}
+                    value="CONFIRMAR COMPRA"
+                    disabled= {comprobarPedido()}
+                />
+              </div>
+            </form>
+          </div>
+        )}
+
+
 
       </div> {/* ESTE ES EL DIV QUE DA CIERRE A PRODUCTOS CONTAINER  */}
+
+      {comprobarPedido() && (
+        <div className={stylesResumen.container_nohay}>
+          <p className={stylesResumen.nohay}>No hay elementos en tu pedido aún</p>
+        </div>
+      )}
+
       
 
     </aside>

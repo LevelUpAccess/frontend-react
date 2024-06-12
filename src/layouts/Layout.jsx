@@ -10,6 +10,7 @@ import { useAuth } from '../hooks/useAuth'
 import stylesSigned from '../styles/navSigned.module.css'; // Importa los estilos
 import{Link} from 'react-router-dom'
 import Colores from '../components/Colores'
+import Nav from '../components/Nav'
 
 
 const customStyles = {
@@ -68,8 +69,13 @@ export default function Layout() {
           </ul>
 
           <ul className={stylesSigned.cuenta_menu}>        
-            {/* <li className=""><a href="#"><i className="fas fa-door-open"></i></a></li> */}
-            <button type="button" className="fas fa-door-open" onClick={logout}/>
+            <button type="button" className="" onClick={logout}>
+                      <img 
+                          src="../img/logout.png" 
+                          alt="Icono de puerta" 
+                          className={`${stylesSigned.small_icon} ${stylesSigned.icono_corazon}`}
+                      />
+            </button>
           </ul>
 
       </div>
