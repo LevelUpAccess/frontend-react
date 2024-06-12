@@ -11,9 +11,6 @@ const QuioscoContext = createContext();
 
 const QuioscoProvider = ({children}) => {
 
-
-
-
     //AQUI ESTAMOS GENERANDO STATES
 
     // [Nombre del estate, funcion del estate(Set)]

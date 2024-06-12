@@ -103,7 +103,7 @@ main{
     border-radius: 12px;
     color: white;
     padding-left: 30px; /* Ajusta el valor según sea necesario */
-    width: 300px; /* Ajusta el valor según sea necesario */
+    width: 900px; /* Ajusta el valor según sea necesario */
     height: 35px;
     border: none;
 }
@@ -248,4 +248,13 @@ main{
     opacity: 0.7; /* Opción 1: Cambiar la opacidad */
     transform: scale(1.1); /* Opción 2: Hacer zoom */
   }
+
+.app_container {
+     /* Ajusta el valor según la altura de tu nav */
+}
+  
+.toast_container {
+    margin-top: 55px;
+    z-index: 9999; /* Asegúrate de que esté por encima de otros elementos si es necesario */
+}
   

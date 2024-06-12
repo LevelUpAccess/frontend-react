@@ -38,7 +38,7 @@ export default function Inicio() {
     <div className="bg-[#121212]">
       <h1 style={{ marginTop: '70px' }} className='text-5xl text-white'>{categoriaActual.nombre}</h1>
       <p className='text-2xl my-10 text-white'>
-        Elige y personaliza tu pedido a continuación.
+        ¡Mira lo que hemos preparado para ti!
       </p>
 
       <div className="grid gap-4 grid-cols01 md:grid-cols-2 xl:grid-cols-3 bg-[#121212]">

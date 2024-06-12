@@ -18,7 +18,7 @@ export default function Sidebar() {
                 />
             </div>
 
-            <p className="my-10 text-xl text-center text-white">User: {user?.name}</p>
+            <p className="my-1 text-xl text-center text-white">Bienvenido: {user?.name}</p>
 
             <div className="mt-10 text-white">
                 {categorias.map( categoria => (

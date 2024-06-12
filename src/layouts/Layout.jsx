@@ -1,17 +1,14 @@
-import { Outlet } from 'react-router-dom'
-import Modal from 'react-modal'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import Sidebar from '../components/Sidebar'
-
-import useQuiosco from '../hooks/useQuiosco'
-import ModalProducto from '../components/ModalProducto'
-import { useAuth } from '../hooks/useAuth'
-import stylesSigned from '../styles/navSigned.module.css'; // Importa los estilos
-import{Link} from 'react-router-dom'
-import Colores from '../components/Colores'
-import Nav from '../components/Nav'
-
+import { Outlet } from 'react-router-dom';
+import Modal from 'react-modal';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Sidebar from '../components/Sidebar';
+import useQuiosco from '../hooks/useQuiosco';
+import ModalProducto from '../components/ModalProducto';
+import { useAuth } from '../hooks/useAuth';
+import stylesSigned from '../styles/navSigned.module.css';
+import { Link } from 'react-router-dom';
+import Colores from '../components/Colores';
 
 const customStyles = {
   content: {
@@ -24,47 +21,35 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement('#root')
-
-// Los componentes van en mayuscula como si fueran clases
-
-//Si lo ves con mayusculas al inicio es un buen indicativo de que es un componente, si lo ves con "use", eso muy probablemente sea un hook, y un hook es una funcion.
-
-//Los componentes se mandan llamar de esta manera: <componente/>
-
-//Los hooks son funciones que mandas llamar con un parentesis.
+Modal.setAppElement('#root');
 
 export default function Layout() {
+  const { user, error, logout } = useAuth({ middleware: 'auth' });
+  const { modal } = useQuiosco();
 
-  const {user, error, logout} = useAuth({middleware: 'auth'})
-  const {modal} = useQuiosco()
-
-
-  console.log(user)
-  console.log(error)
-  // console.log(modal)
+  console.log(user);
+  console.log(error);
 
   return (
     <>
-      <main>
-
-      <div className={stylesSigned.navegacion}>
+      <main className={stylesSigned.app_container}>
+        <div className={stylesSigned.navegacion}>
           <h1 className={stylesSigned.title}>
-              <Link to="/">
-                <img className={stylesSigned.logo} src="../img/logo2.png" alt="LevelUp Access logo"/>
-              </Link>
-              LevelUp <span className={stylesSigned.rojo}>Access</span>
+            <Link to="/">
+              <img className={stylesSigned.logo} src="../img/logo2.png" alt="LevelUp Access logo" />
+            </Link>
+            LevelUp <span className={stylesSigned.rojo}>Access</span>
           </h1>
 
           <div className={stylesSigned.buscar_container}>
             <i className={`fas fa-search lupa ${stylesSigned.lupa}`} />
-            <input type="text" className={stylesSigned.buscar_barra} placeholder="Buscar"/>
+            <input type="text" className={stylesSigned.buscar_barra} placeholder="Buscar" />
           </div>
 
-          <ul className={stylesSigned.iconos_menu}>        
-            <li className=""><a href="#"><i className={`fas fa-heart ${stylesSigned.icono_corazon}`}></i></a></li>
+          <ul className={stylesSigned.iconos_menu}>
+            <li><a href="#"><i className={`fas fa-heart ${stylesSigned.icono_corazon}`}></i></a></li>
             <Link to="/carrito">
-              <li className=""><a href="#"><i className={`fas fa-shopping-cart ${stylesSigned.icono_carrito}`}></i></a></li>
+              <li><a href="#"><i className={`fas fa-shopping-cart ${stylesSigned.icono_carrito}`}></i></a></li>
             </Link>
           </ul>
 
@@ -77,29 +62,22 @@ export default function Layout() {
                       />
             </button>
           </ul>
+        </div>
 
-      </div>
-          <div className='md:flex'>
-            <Sidebar/>
-            <main className='flex-1 h-screen overflow-y-scroll bg-gray-100'>
+        <div className='md:flex'>
+          <Sidebar />
+          <main className='flex-1 h-screen overflow-y-scroll bg-gray-100'>
+            <Outlet />
+            <Colores />
+          </main>
+        </div>
+      </main>
 
-            {/* OUTLET ES LA CONEXION DE LAS RUTAS DEL ROUTER, AUN ESTOY BATALLANDO PA ENTENDER ESTA COSA */}
-              <Outlet/>
-              <Colores></Colores>
+      <Modal isOpen={modal} style={customStyles}>
+        <ModalProducto />
+      </Modal>
 
-
-            </main>
-            
-            {/* <Resumen/> */}
-          </div> 
-        </main>
-
-          <Modal isOpen = {modal} style={customStyles}>
-            <ModalProducto></ModalProducto>
-          </Modal>
-
-
-          <ToastContainer></ToastContainer>
+      <ToastContainer className={stylesSigned.toast_container} />
     </>
-  )
+  );
 }

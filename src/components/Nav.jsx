@@ -39,10 +39,10 @@ export default function Nav() {
                 LevelUp <span className={stylesCarrito.rojo}>Access</span>
             </h1>
 
-            <div className={stylesCarrito.buscar_container}>
+            {/* <div className={stylesCarrito.buscar_container}>
                 <i className={`fas fa-search lupa ${stylesCarrito.lupa}`} />
                 <input type="text" className={stylesCarrito.buscar_barra} placeholder="Buscar"/>
-            </div>
+            </div> */}
 
             <ul className={stylesCarrito.iconos_menu}>        
                 <li className=""><a href="#"><i className={`fas fa-heart ${stylesCarrito.icono_corazon}`}></i></a></li>
