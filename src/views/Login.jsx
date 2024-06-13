@@ -42,7 +42,6 @@ export default function Login() {
     <>
         <div className="">
             <form onSubmit={handleSubmit} noValidate>
-            {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>) : null}
                 <div className={`${loginStyles.container_form} ${loginStyles.body}`}>
                     <div className={loginStyles.logo_form}>
                         <img src="../img/logo2.png" alt="Logo LevelUpAccess"/>
@@ -104,6 +103,7 @@ export default function Login() {
                         </Link>
                     </nav>
                 </div> {/* ESTE ES EL DIV DEL BODY*/}
+                {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>) : null}  
             </form>
         </div>
     </>

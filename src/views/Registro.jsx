@@ -50,7 +50,6 @@ export default function Registro() {
     <>
         <div className="">
             <form action="" onSubmit={handleSubmit} noValidate>
-            {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>) : null}
                 <div className={`${registroStyles.container_form} ${registroStyles.body}`}>
                     <div className={registroStyles.logo_form}>
                         <img src="../img/logo2.png" alt="Logo LevelUpAccess"/>
@@ -154,6 +153,7 @@ export default function Registro() {
                     </nav>
 
                 </div> {/* ESTE ES EL DIV DEL BODY*/} 
+                {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>) : null}
             </form>
         </div>
     </>
