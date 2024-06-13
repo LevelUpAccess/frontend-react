@@ -9,6 +9,8 @@ import { useAuth } from '../hooks/useAuth';
 import stylesSigned from '../styles/navSigned.module.css';
 import { Link } from 'react-router-dom';
 import Colores from '../components/Colores';
+import SearchBar from '../components/SearchBar';
+import { useState, useEffect } from 'react';
 
 const customStyles = {
   content: {
@@ -30,6 +32,14 @@ export default function Layout() {
   console.log(user);
   console.log(error);
 
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearchResults = (results) => {
+    setSearchResults(results);
+    // Puedes manejar los resultados de búsqueda aquí, por ejemplo, mostrando una lista desplegable
+    console.log(results);
+  };
+
   return (
     <>
       <main className={stylesSigned.app_container}>
@@ -43,7 +53,9 @@ export default function Layout() {
 
           <div className={stylesSigned.buscar_container}>
             <i className={`fas fa-search lupa ${stylesSigned.lupa}`} />
-            <input type="text" className={stylesSigned.buscar_barra} placeholder="Buscar" />
+            <SearchBar 
+              onSearchResults={handleSearchResults}
+            />
           </div>
 
           <ul className={stylesSigned.iconos_menu}>

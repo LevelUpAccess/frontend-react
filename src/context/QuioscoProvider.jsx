@@ -15,6 +15,7 @@ const QuioscoProvider = ({children}) => {
 
     // [Nombre del estate, funcion del estate(Set)]
     const [categorias, setCategorias] = useState([]);
+    const [productoActual, setProductoActual] = useState(null);
     //Categoria actual
     const[categoriaActual, setCategoriaActual] = useState({})
     const[modal, setModal] = useState(false)
@@ -182,7 +183,7 @@ const QuioscoProvider = ({children}) => {
                 total,
                 handleSubmitNuevaOrden,
                 handleClickCompletarPedido,
-                handleClickProductoAgotado
+                handleClickProductoAgotado,
             }}
         >{children}</QuioscoContext.Provider>
     )

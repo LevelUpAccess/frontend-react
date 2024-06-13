@@ -18,6 +18,7 @@ export default function Categoria({categoria}) {
         className="w-12"
         onClick={() => handleClickCategoria(id)}
       />
+      
       <span className="text-lg font-bold cursor-pointer truncate">
         {nombre}
       </span>

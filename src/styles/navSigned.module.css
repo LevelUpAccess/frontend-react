@@ -42,8 +42,21 @@ main{
     position: fixed;
     display: flex;
     justify-content: center;
+    
     left: 330px;
-    /* top: 1.8vh; */
+    top: 1.8vh;
+    }
+    
+.buscar_barra {
+    display: block;
+    position: relative;
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    color: white;
+    padding-left: 30px; /* Ajusta el valor según sea necesario */
+    width: 900px; /* Ajusta el valor según sea necesario */
+    height: 35px;
+    border: none;
 }
 
 .navegacion{
@@ -88,25 +101,14 @@ main{
 
 .lupa {
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 10px; /* Ajusta el valor según sea necesario */
     transform: translateY(-50%);
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     z-index: 1; /* Para que la lupa esté por encima del campo de entrada */
 }
  
-.buscar_barra {
-    display: block;
-    position: relative;
-    background-color: #2c2c2c;
-    border-radius: 12px;
-    color: white;
-    padding-left: 30px; /* Ajusta el valor según sea necesario */
-    width: 900px; /* Ajusta el valor según sea necesario */
-    height: 35px;
-    border: none;
-}
 
 
 /* TIENDA, CATEGORIAS, OFERTAS */
