@@ -8,6 +8,9 @@ export default function Sidebar() {
     const {categorias} = useQuiosco()
     const {logout, user} = useAuth({middleware: 'auth'})
 
+     // Filtramos las categorías para que solo se desplieguen aquellas con IDs del 1 al 7
+    const categoriasFiltradas = categorias.filter(categoria => categoria.id >= 1 && categoria.id <= 6);
+
     return (
         <aside style={{ marginTop: '70px' }} className="mt-6 md:w-72 bg-[#121212]">
             <div className="p-4">
@@ -22,7 +25,7 @@ export default function Sidebar() {
 
             <div className="mt-10 text-white">
                 
-                {categorias.map( categoria => (
+                {categoriasFiltradas.map( categoria => (
                     <Categoria
                     //React siempre espera una key siempre que estes iterando algo.
                         key={categoria.id}
