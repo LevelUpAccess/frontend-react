@@ -8,15 +8,15 @@ export default function AdminSidebar() {
     <aside className="md:w-72 h-screen">
         <div className="p-4">
             <img
-                src="/img/logo.svg"
+                src="/img/logo2.pnf"
                 alt="imagen logotipo"
                 className="w-40"
             />
         </div>
 
         <nav className='flex flex-col p-4'>
-            <Link to="/admin" className='font-bold text-lg'>Ordenes</Link>
-            <Link to="/admin/productos" className='font-bold text-lg'>Productos</Link>
+            <Link to="/admin" className='font-bold text-lg text-white'>Ordenes</Link>
+            <Link to="/admin/productos" className='font-bold text-lg text-white'>Productos</Link>
             
         </nav>
 
