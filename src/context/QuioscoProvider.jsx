@@ -24,6 +24,25 @@ const QuioscoProvider = ({children}) => {
     const [deseo, setDeseo] = useState([])
     const [total, setTotal] = useState(0)
 
+    const [wishlist, setWishlist] = useState([]);
+
+    const handleAgregarAWishlist = (producto) => {
+        if (wishlist.some((item) => item.id === producto.id)) {
+          const updatedWishlist = wishlist.filter((item) => item.id !== producto.id);
+          setWishlist(updatedWishlist);
+          toast.success('Producto eliminado de la lista de deseos');
+        } else {
+          setWishlist([...wishlist, producto]);
+          toast.success('Producto agregado a la lista de deseos');
+        }
+      };
+    
+    const handleEliminarProductoWishlist = (id) => {
+        const updatedWishlist = wishlist.filter((item) => item.id !== id);
+        setWishlist(updatedWishlist);
+        toast.success('Producto eliminado de la lista de deseos');
+    };
+
     useEffect(() => {
         const nuevoTotal = pedido.reduce((total, producto) => (producto.precio * producto.cantidad) + total, 0)
         setTotal(nuevoTotal)
@@ -203,6 +222,9 @@ const QuioscoProvider = ({children}) => {
                 handleClickCompletarPedido,
                 handleClickProductoAgotado,
                 handleAgregarDeseo,
+                wishlist,
+                handleAgregarAWishlist,
+                handleEliminarProductoWishlist
             }}
         >{children}</QuioscoContext.Provider>
     )

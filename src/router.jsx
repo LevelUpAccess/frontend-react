@@ -9,7 +9,7 @@ import Ordenes from './views/Ordenes'
 import Productos from './views/Productos'
 import Carrito from './views/Carrito'
 import Bienvenida from './views/Bienvenida'
-import Wishlist from './views/Wishlist'
+import Favoritos from './views/Favoritos'
 
 const router = createBrowserRouter([
     {
@@ -71,11 +71,11 @@ const router = createBrowserRouter([
     },
 
     {
-        path: '/wishlist',
+        path: '/favoritos',
         children: [
             {
                 index: true,
-                element: <Wishlist />
+                element: <Favoritos />
             }
         ]
     }

@@ -45,7 +45,7 @@ export default function Nav() {
             </div> */}
 
             <ul className={stylesCarrito.iconos_menu}>        
-                <li className=""><Link to="/wishlist"><i className={`fas fa-heart ${stylesCarrito.icono_corazon}`}></i></Link></li>
+                <li className=""><Link to="/favoritos"><i className={`fas fa-heart ${stylesCarrito.icono_corazon}`}></i></Link></li>
                 <Link to="/carrito">
                     <li className=""><a href="#"><i className={`fas fa-shopping-cart ${stylesCarrito.icono_carrito}`}></i></a></li>
                 </Link>

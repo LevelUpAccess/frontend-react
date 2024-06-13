@@ -4,7 +4,7 @@ import { formatearDinero } from '../helpers';
 import styles from '../styles/producto.module.css';
 
 const Producto = ({ producto, botonAgregar = false, botonDisponible = false }) => {
-  const { handleClickModal, handleSetProducto, handleClickProductoAgotado } = useQuiosco();
+  const { handleClickModal, handleSetProducto, handleClickProductoAgotado,  handleAgregarAWishlist } = useQuiosco();
   const { nombre, precio, imagen } = producto;
 
   return (
@@ -40,10 +40,8 @@ const Producto = ({ producto, botonAgregar = false, botonDisponible = false }) =
                 <button
                     type="button"
                     className="text-[#6d6d6d] font-bold text-xl transition duration-300"
-                    onClick={() => {
-                        handleSetProducto(producto);
-                    }}
-                    >
+                    onClick={() => handleAgregarAWishlist(producto)}
+                >
                     <span className={`${styles.corazon}`}>
                         <i className={`${styles.corazon} fas fa-heart fa-lg`}></i>
                     </span>

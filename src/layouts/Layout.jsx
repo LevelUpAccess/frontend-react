@@ -59,7 +59,7 @@ export default function Layout() {
           </div>
 
           <ul className={stylesSigned.iconos_menu}>
-            <li><Link to="/wishlist"><i className={`fas fa-heart ${stylesSigned.icono_corazon}`}></i></Link></li>
+            <li><Link to="/Favoritos"><i className={`fas fa-heart ${stylesSigned.icono_corazon}`}></i></Link></li>
             <Link to="/carrito">
               <li><a href="#"><i className={`fas fa-shopping-cart ${stylesSigned.icono_carrito}`}></i></a></li>
             </Link>
