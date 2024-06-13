@@ -11,6 +11,10 @@ function SearchBar({ onSearchResults }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (query.trim() === '') {
+      onSearchResults({ data: [] });
+      return;
+    }
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/productos/search?query=${query}`);
       onSearchResults(response.data);

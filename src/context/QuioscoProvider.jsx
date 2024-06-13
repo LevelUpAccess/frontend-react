@@ -21,6 +21,7 @@ const QuioscoProvider = ({children}) => {
     const[modal, setModal] = useState(false)
     const[producto, setProducto] = useState(false)
     const [pedido, setPedido] = useState([])
+    const [deseo, setDeseo] = useState([])
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
@@ -88,6 +89,23 @@ const QuioscoProvider = ({children}) => {
             //Lo que haya en el pedido
             setPedido([...pedido, producto])
             toast.success('Agreado al pedido')
+        }
+    }
+
+    const handleAgregarDeseo = ({categoria_id, ...producto}) =>{
+
+        // console.log(producto)
+
+        //REVISA SI UN ELEMENTO YA EXISTE EN EL ARREGLO, O ACTUALIZAMOS LA CANTIDAD QUE EL USUARIO DESEE
+        if(deseo.some( deseoState => deseoState.id === producto.id )) {
+            const deseoActualizado = deseo.map(deseoState => deseoState.id === 
+            producto.id ? producto : deseoState)
+            setPedido(deseoActualizado)
+            toast.success('Guardado correctamente')
+        }else{
+            //Lo que haya en el pedido
+            setDeseo([...pedido, producto])
+            toast.success('Agregado a favoritos!')
         }
     }
 
@@ -184,6 +202,7 @@ const QuioscoProvider = ({children}) => {
                 handleSubmitNuevaOrden,
                 handleClickCompletarPedido,
                 handleClickProductoAgotado,
+                handleAgregarDeseo,
             }}
         >{children}</QuioscoContext.Provider>
     )

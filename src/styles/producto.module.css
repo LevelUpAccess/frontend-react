@@ -42,27 +42,13 @@ main{
     position: fixed;
     display: flex;
     justify-content: center;
-    
     left: 330px;
-    top: 1.8vh;
-    }
-    
-.buscar_barra {
-    display: block;
-    position: relative;
-    background-color: #2c2c2c;
-    border-radius: 12px;
-    color: white;
-    padding-left: 30px; /* Ajusta el valor según sea necesario */
-    width: 900px; /* Ajusta el valor según sea necesario */
-    height: 35px;
-    border: none;
-    font-size: 12px;
+    /* top: 1.8vh; */
 }
 
 .navegacion{
     display: flex;
-    position: fixed;
+    position: relative;
     width: 100%;
     height: 70px; 
     margin-top: 0;
@@ -102,14 +88,25 @@ main{
 
 .lupa {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 10px; /* Ajusta el valor según sea necesario */
     transform: translateY(-50%);
     color: white;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     z-index: 1; /* Para que la lupa esté por encima del campo de entrada */
 }
  
+.buscar_barra {
+    display: block;
+    position: relative;
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    color: white;
+    padding-left: 30px; /* Ajusta el valor según sea necesario */
+    width: 300px; /* Ajusta el valor según sea necesario */
+    height: 35px;
+    border: none;
+}
 
 
 /* TIENDA, CATEGORIAS, OFERTAS */
@@ -177,6 +174,17 @@ main{
     /* border-radius: 5px; */
 }
 
+.corazon{
+    padding-left: 10px;
+    padding-right: 8px;
+}
+
+.corazon i:hover{
+    transition: 0.3s;
+    color: #EF3340;
+    /* border-radius: 5px; */
+}
+
 .iconos_menu li a{
     transition: 0.3s;
     text-decoration: none;
@@ -239,7 +247,7 @@ main{
     font-size: 1.3rem;
     margin-right: 8px; /* Espacio entre el icono y el texto */
 }
-    
+
 
 .small_icon {
     width: 24px;
@@ -251,13 +259,6 @@ main{
     opacity: 0.7; /* Opción 1: Cambiar la opacidad */
     transform: scale(1.1); /* Opción 2: Hacer zoom */
   }
-
-.app_container {
-     /* Ajusta el valor según la altura de tu nav */
-}
   
-.toast_container {
-    margin-top: 55px;
-    z-index: 9999; /* Asegúrate de que esté por encima de otros elementos si es necesario */
-}
-  
+    
+ 
