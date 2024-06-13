@@ -21,6 +21,7 @@ export default function Sidebar() {
             <p className="my-1 text-xl text-center text-white">Bienvenido: {user?.name}</p>
 
             <div className="mt-10 text-white">
+                
                 {categorias.map( categoria => (
                     <Categoria
                     //React siempre espera una key siempre que estes iterando algo.
