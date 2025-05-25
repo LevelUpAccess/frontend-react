@@ -52,15 +52,27 @@ export default function Nav() {
             </ul>
 
             <ul className={stylesCarrito.cuenta_menu}>  
-
-                <button type="button" className="" onClick={logout}>
-                    <img 
-                        src="../img/logout.png" 
-                        alt="Icono de puerta" 
-                        className={`${stylesCarrito.small_icon} ${stylesCarrito.icono_corazon}`}
-                    />
+            <li>
+                <button type="button" onClick={logout}>
+                <img 
+                    src="../img/logout.png" 
+                    alt="Icono de puerta" 
+                    className={`${stylesCarrito.small_icon} ${stylesCarrito.icono_corazon}`}
+                />
                 </button>
+            </li>
+            <Link to="/perfil">
+            <li className="">
+                <img 
+                src="../img/perfilUsuario.png" 
+                alt="Icono de perfil" 
+                className={`${stylesCarrito.small_icon} ${stylesCarrito.icono_corazon}`}
+                />
+            </li>
+            </Link>
+
             </ul>
+
 
         </div>
 

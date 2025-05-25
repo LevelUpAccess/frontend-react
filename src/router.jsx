@@ -10,19 +10,21 @@ import Productos from './views/Productos'
 import Carrito from './views/Carrito'
 import Bienvenida from './views/Bienvenida'
 import Favoritos from './views/Favoritos'
+import PerfilUsuario from './PerfilUsuario'
 
 const router = createBrowserRouter([
-    {
+ {
         path: '/',
-        element: <Layout/>, 
-        // Que es children, basicamente va a ser lo que este definido aqui como sus hijos, van a utlizar <Layout/>
+        element: <Layout />,
         children: [
-            {
-                index: true, 
-                element: <Inicio/>
-            }
-        ]
-    },
+    {
+            index: true,
+            element: <Inicio />
+    }
+    
+    ]
+},
+
     {
         path: '/auth',
         element: <AuthLayout/>,
@@ -78,8 +80,16 @@ const router = createBrowserRouter([
                 element: <Favoritos />
             }
         ]
+    },
+    {
+        path: '/perfil',
+        children: [
+            {
+                index: true,
+                element: <PerfilUsuario />
+            }
+        ]
     }
-
 ])
 
 export default router

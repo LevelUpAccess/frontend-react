@@ -65,15 +65,28 @@ export default function Layout() {
             </Link>
           </ul>
 
-          <ul className={stylesSigned.cuenta_menu}>        
-            <button type="button" className="" onClick={logout}>
-                      <img 
-                          src="../img/logout.png" 
-                          alt="Icono de puerta" 
-                          className={`${stylesSigned.small_icon} ${stylesSigned.icono_corazon}`}
-                      />
+          <ul className={stylesSigned.cuenta_menu}>
+          <li>
+            <button type="button" onClick={logout}>
+              <img 
+                src="../img/logout.png" 
+                alt="Icono de puerta" 
+                className={`${stylesSigned.small_icon} ${stylesSigned.icono_corazon}`} 
+              />
             </button>
-          </ul>
+          </li>
+          <Link to="/perfil">
+          <li className="">
+            <img 
+              src="../img/perfilUsuario.png" 
+              alt="Icono de perfil" 
+              className={`${stylesSigned.small_icon} ${stylesSigned.icono_corazon}`} 
+            />
+          </li>
+        </Link>
+
+        </ul>
+
         </div>
 
         <div className='md:flex'>
