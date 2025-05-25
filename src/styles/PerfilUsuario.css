@@ -1,20 +1,20 @@
-/* src/components/PerfilUsuario.css */
 .perfil-container {
   background-color: #1b1b1b;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 
 .perfil-card {
   background-color: #2a2a2a;
   padding: 2rem;
   border-radius: 16px;
-  width: 90%;
-  max-width: 500px;
+  width: 100%;
+  max-width: 600px;
   color: #ffffff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .perfil-card h2 {
@@ -37,7 +37,12 @@
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.7rem;
+}
+
+.input-group label {
+  font-size: 0.85rem;
+  color: #bbbbbb;
 }
 
 .perfil-form input {
@@ -62,6 +67,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s ease;
+  margin-top: 1rem;
 }
 
 .guardar-btn:hover {
