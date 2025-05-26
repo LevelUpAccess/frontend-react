@@ -4,17 +4,49 @@ import Nav from "./components/Nav";
 
 const PerfilUsuario = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
     phone: "",
-    nationality: "",
   });
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("perfilUsuario"));
-    if (storedData) setFormData(storedData);
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("AUTH_TOKEN");
+      if (!token) {
+        alert("Token no encontrado. Inicia sesión.");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:8000/api/usuario/perfil", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          alert("Error al cargar datos del usuario.");
+          return;
+        }
+
+        const userData = await response.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          name: userData.name || "",
+          email: userData.email || "",
+          phone: userData.phone || "",
+        }));
+      } catch (error) {
+        console.error("Error al obtener datos del perfil:", error);
+        alert("Error al cargar datos del usuario.");
+      }
+    };
+
+    fetchUserData();
   }, []);
 
   const handleChange = (e) => {
@@ -22,14 +54,51 @@ const PerfilUsuario = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
       alert("Las contraseñas no coinciden.");
       return;
     }
-    localStorage.setItem("perfilUsuario", JSON.stringify(formData));
-    alert("Datos guardados correctamente.");
+
+    const token = localStorage.getItem("AUTH_TOKEN");
+    if (!token) {
+      alert("Token no encontrado. Inicia sesión.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8000/api/usuario/perfil", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          password: formData.password,
+          password_confirmation: formData.confirmPassword,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        const errores = errorData.errors
+          ? Object.values(errorData.errors).map((e) => e.join(", ")).join("\n")
+          : errorData.message || "Error al actualizar.";
+        alert("Errores:\n" + errores);
+        return;
+      }
+
+      const data = await response.json();
+      alert(data.message || "Datos actualizados correctamente.");
+    } catch (error) {
+      console.error("Error al actualizar:", error);
+      alert("Error de red al actualizar.");
+    }
   };
 
   return (
@@ -44,8 +113,8 @@ const PerfilUsuario = () => {
               <label>Nombre de Usuario</label>
               <input
                 type="text"
-                name="username"
-                value={formData.username}
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
@@ -65,7 +134,6 @@ const PerfilUsuario = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                required
               />
 
               <label>Confirmar Contraseña</label>
@@ -74,7 +142,6 @@ const PerfilUsuario = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                required
               />
 
               <label>Número de Celular</label>
@@ -97,8 +164,3 @@ const PerfilUsuario = () => {
 };
 
 export default PerfilUsuario;
-
-
-
-
-
