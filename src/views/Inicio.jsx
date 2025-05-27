@@ -42,8 +42,8 @@ export default function Inicio() {
     <>
       <div className="bg-[#121212]">
         <div className={stylesSigned.buscar_container}>
-              <i className={`fas fa-search lupa ${stylesSigned.lupa}`} />
-              <SearchBar onSearchResults={handleSearchResults} className={stylesSigned.buscar_barra}/>  
+          <i className={`fas fa-search lupa ${stylesSigned.lupa}`} />
+          <SearchBar onSearchResults={handleSearchResults} className={stylesSigned.buscar_barra} />
         </div>
 
         <h1 style={{ marginTop: '70px' }} className='text-5xl text-white'>{categoriaActual.nombre}</h1>

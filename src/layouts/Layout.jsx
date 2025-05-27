@@ -53,7 +53,7 @@ export default function Layout() {
 
           <div className={stylesSigned.buscar_container}>
             <i className={`fas fa-search lupa ${stylesSigned.lupa}`} />
-            <SearchBar 
+            <SearchBar
               onSearchResults={handleSearchResults}
             />
           </div>
@@ -64,28 +64,28 @@ export default function Layout() {
               <li><a href="#"><i className={`fas fa-shopping-cart ${stylesSigned.icono_carrito}`}></i></a></li>
             </Link>
           </ul>
-
-          <ul className={stylesSigned.cuenta_menu}>
-          <li>
-            <button type="button" onClick={logout}>
-              <img 
-                src="../img/logout.png" 
-                alt="Icono de puerta" 
-                className={`${stylesSigned.small_icon} ${stylesSigned.icono_corazon}`} 
-              />
-            </button>
-          </li>
-          <Link to="/perfil">
-          <li className="">
-            <img 
-              src="../img/perfilUsuario.png" 
-              alt="Icono de perfil" 
-              className={`${stylesSigned.small_icon} ${stylesSigned.icono_corazon}`} 
-            />
-          </li>
-        </Link>
-
-        </ul>
+          <div className='pt-2'>
+            <ul className={stylesSigned.cuenta_menu}>
+              <li>
+                <button type="button" onClick={logout}>
+                  <img
+                    src="../img/logout.png"
+                    alt="Icono de puerta"
+                    className={`${stylesSigned.small_icon} ${stylesSigned.icono_corazon}`}
+                  />
+                </button>
+              </li>
+              <Link to="/perfil">
+                <li className="">
+                  <img
+                    src="../img/perfilUsuario.png"
+                    alt="Icono de perfil"
+                    className={`${stylesSigned.small_icon} ${stylesSigned.icono_corazon}`}
+                  />
+                </li>
+              </Link>
+            </ul>
+          </div>
 
         </div>
 

@@ -102,7 +102,7 @@ const PerfilUsuario = () => {
   };
 
   return (
-    <div>
+    < div >
       <Nav />
       <div className="perfil-container">
         <div className="perfil-card">
@@ -110,7 +110,7 @@ const PerfilUsuario = () => {
           <p className="subtitulo">Actualiza tu información personal</p>
           <form className="perfil-form" onSubmit={handleSubmit}>
             <div className="input-group">
-              <label>Nombre de Usuario</label>
+              <label>Nombre de Usuario </label>
               <input
                 type="text"
                 name="name"
@@ -159,7 +159,7 @@ const PerfilUsuario = () => {
           </form>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
