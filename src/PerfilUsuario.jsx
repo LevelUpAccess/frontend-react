@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./styles/PerfilUsuario.css";
 import Nav from "./components/Nav";
 
+import { useAuth } from "./hooks/useAuth"
+
+
+
 const PerfilUsuario = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -110,7 +114,9 @@ const PerfilUsuario = () => {
           <p className="subtitulo">Actualiza tu información personal</p>
           <form className="perfil-form" onSubmit={handleSubmit}>
             <div className="input-group">
-              <label>Nombre de Usuario </label>
+              {
+              }
+              <label>Nombre de Usuario: </label>
               <input
                 type="text"
                 name="name"

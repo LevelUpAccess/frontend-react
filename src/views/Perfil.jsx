@@ -1,59 +1,204 @@
-import Nav from "../components/Nav"
-import { useAuth } from "../hooks/useAuth"
+import Nav from "../components/Nav";
+import { useState, useEffect } from "react";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../hooks/useAuth";
+import clienteAxios from "../config/axios";
+
 
 
 export default function Perfil() {
+  const { logout, user } = useAuth({ middleware: 'auth' })
+
+  const [editando, setEditando] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    apellido: '',
+    password: '',
+    confirmPassword: '',
+    current_password: ''
+  });
+
+
+  // Cargar datos cuando el usuario esté disponible
+  useEffect(() => {
+    if (user) {
+      setFormData(prev => ({
+        ...prev,
+        name: user.name || "",
+        email: user.email || "",
+        apellido: localStorage.getItem("apellido") || ""
+      }));
+    }
+  }, [user]);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem('AUTH_TOKEN');
+
+    try {
+      const res = await clienteAxios.put(
+        '/api/user/update',
+        {
+          name: formData.name,
+          email: formData.email,
+          current_password: formData.current_password,
+          password: formData.password,
+          password_confirmation: formData.confirmPassword
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      toast.success("Perfil actualizado correctamente");
+      console.log("Usuario actualizado:", res.data);
+    } catch (error) {
+      const response = error.response;
+
+      if (response?.status === 422 && response.data?.errors) {
+        const errores = response.data.errors;
+        Object.values(errores).forEach((mensajes) => {
+          mensajes.forEach((msg) => toast.error(msg));
+        });
+      } else if (response?.data?.message) {
+        toast.error(response.data.message);
+      } else {
+        toast.error("Ocurrió un error al actualizar el perfil.");
+      }
+
+      console.error("Error al actualizar:", response?.data || error);
+    }
+  };
+
+
+
   return (
     <>
-      <Nav></Nav>
-      <div class="mx-auto right-0 mt-20 w-60">
-        <div class="bg-white rounded overflow-hidden shadow-lg">
-          <div class="text-center p-6 bg-[#121212] border-b">
-            (<svg aria-hidden="true" role="img" class="h-24 w-24 text-white rounded-full mx-auto" width="32" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256"><path fill="currentColor" d="M172 120a44 44 0 1 1-44-44a44 44 0 0 1 44 44Zm60 8A104 104 0 1 1 128 24a104.2 104.2 0 0 1 104 104Zm-16 0a88 88 0 1 0-153.8 58.4a81.3 81.3 0 0 1 24.5-23a59.7 59.7 0 0 0 82.6 0a81.3 81.3 0 0 1 24.5 23A87.6 87.6 0 0 0 216 128Z"></path></svg>
-            <p class="pt-2 text-lg font-semibold text-gray-50">John Doe</p>
-            <p class="text-sm text-[#ef3440]">John@Doe.com</p>
-            <div class="mt-5">
-              <a
-                class="border rounded-full py-2 px-4 text-xs font-semibold text-gray-100"
+      <ToastContainer position="top-right" autoClose={5000} />
+      <Nav />
+      <div className="mx-auto right-0 mt-20 w-[600px]">
+        <div className="bg-white rounded overflow-hidden shadow-lg">
+          <div className="text-center p-6 bg-[#121212] border-b">
+            <svg
+              aria-hidden="true"
+              role="img"
+              className="h-24 w-24 text-white rounded-full mx-auto"
+              width="32"
+              height="32"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 256 256"
+            >
+              <path
+                fill="currentColor"
+                d="M172 120a44 44 0 1 1-44-44a44 44 0 0 1 44 44Zm60 8A104 104 0 1 1 128 24a104.2 104.2 0 0 1 104 104Zm-16 0a88 88 0 1 0-153.8 58.4a81.3 81.3 0 0 1 24.5-23a59.7 59.7 0 0 0 82.6 0a81.3 81.3 0 0 1 24.5 23A87.6 87.6 0 0 0 216 128Z"
+              ></path>
+            </svg>
+            <p className="pt-2 text-lg font-semibold text-gray-50">
+              {formData.name}
+            </p>
+            <p className="text-sm text-[#ef3440]">{formData.email}</p>
+            <div className="mt-5">
+              <button
+                className="border rounded-full py-2 px-4 text-xs font-semibold text-gray-100"
+                onClick={() => setEditando(!editando)}
               >
-                Manage your Account
-              </a>
+                {editando ? "Cancelar" : "Editar mi información"}
+              </button>
             </div>
           </div>
-          <div class="border-b">
-            <a href="/account/campaigns" >
-              <a class="px-4 py-2 hover:bg-gray-100 flex">
-                <div class="text-green-600">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1"
-                    viewBox="0 0 24 24"
-                    class="w-5 h-5"
-                  >
-                    <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
-                </div>
-                <div class="pl-3">
-                  <p class="text-sm font-medium text-gray-800 leading-none">
-                    Campaigns
-                  </p>
-                  <p class="text-xs text-gray-500">View your campaigns</p>
-                </div>
-              </a>
-            </a>
-          </div>
 
-          <div class="">
-            <button href="#" class="w-full px-4 py-2 pb-4 hover:bg-gray-100 flex">
-              <p class="text-sm font-medium text-gray-800 leading-none"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="h-4 w-4 text-gray-800 fill-current animate-spin" width="32" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path fill="currentColor" d="M988 548c-19.9 0-36-16.1-36-36c0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9a437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7c26.7 63.1 40.2 130.2 40.2 199.3c.1 19.9-16 36-35.9 36z"></path></svg> Logout
-              </p>
+          {editando && (
+            <form onSubmit={handleSubmit} className="p-4 space-y-3">
+              <p>Editar datos personales</p>
+
+              <input
+                type="text"
+                placeholder="Nombre"
+                className="w-full px-3 py-2 border rounded"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                placeholder="Apellido"
+                className="w-full px-3 py-2 border rounded"
+                name="apellido"
+                value={formData.apellido}
+                onChange={handleChange}
+              />
+              <input
+                type="email"
+                placeholder="Correo"
+                className="w-full px-3 py-2 border rounded"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              <p>Editar contraseña</p>
+
+              <input
+                type="password"
+                placeholder="Contraseña nueva"
+                className="w-full px-3 py-2 border rounded"
+                name="password"
+                onChange={handleChange}
+              />
+
+              <input
+                type="password"
+                placeholder="Confirmar contraseña"
+                className="w-full px-3 py-2 border rounded"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
+              <p>Ingresa tu contraseña actual para confirmar</p>
+
+              <input
+                type="password"
+                placeholder="Contraseña Actual"
+                className="w-full px-3 py-2 border rounded"
+                name="current_password"
+                value={formData.current_password}
+                onChange={handleChange}
+              />
+
+              <button
+                type="submit"
+                className="w-full px-4 py-2 bg-[#121212] text-white rounded hover:bg-black"
+              >
+                Guardar cambios
+              </button>
+            </form>
+          )}
+
+          <div>
+            <button
+              type="button"
+              onClick={logout}
+              className="w-full px-4 py-3 hover:bg-gray-100 flex items-center justify-center gap-2"
+            >
+              <span className="text-sm font-medium text-gray-800">
+                Cerrar sesión
+              </span>
             </button>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
