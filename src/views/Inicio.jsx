@@ -5,6 +5,8 @@ import useQuiosco from '../hooks/useQuiosco';
 import clienteAxios from '../config/axios';
 import SearchBar from '../components/SearchBar'; // Ajusta la ruta si es necesario
 import stylesSigned from '../styles/navSigned.module.css';
+import Spinner from '../components/Spinner';
+
 
 export default function Inicio() {
   const { categoriaActual, categorias, handleClickCategoria } = useQuiosco();
@@ -25,7 +27,7 @@ export default function Inicio() {
     refreshInterval: 1000
   });
 
-  if (isLoading) return 'Cargando...';
+  if (isLoading) return <Spinner />;
 
   const productos = data.data.filter(producto => producto.categoria_id === categoriaActual.id);
 

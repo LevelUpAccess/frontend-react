@@ -1,19 +1,20 @@
 // src/components/Spinner.jsx
 import React from 'react';
-import './Spinner.css'; // Asegúrate de tener esta hoja de estilos
+import './Spinner.css';
 
 const Spinner = () => {
   return (
-    <div className="sk-chase">
-      <div className="sk-chase-dot"></div>
-      <div className="sk-chase-dot"></div>
-      <div className="sk-chase-dot"></div>
-      <div className="sk-chase-dot"></div>
-      <div className="sk-chase-dot"></div>
-      <div className="sk-chase-dot"></div>
+    <div className="spinner-fullscreen-overlay"> {/* Este div NUEVO es el que cubre la pantalla */}
+      <div className="sk-chase"> {/* Este es el spinner animado de puntos */}
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+      </div>
     </div>
   );
 };
 
 export default Spinner;
-

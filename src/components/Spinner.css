@@ -1,11 +1,35 @@
 /* src/components/Spinner.css */
-.sk-chase {
-  width: 40px;
-  height: 40px;
-  position: relative;
-  animation: sk-chase 2.5s infinite linear both;
+
+/* Reglas para el overlay de pantalla completa */
+.spinner-fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Fondo semitransparente oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* Alto z-index para que esté encima de todo */
 }
 
+/* Reglas para el spinner animado (el "sk-chase" en sí) */
+.sk-chase {
+  width: 40px;
+  /* Tamaño del spinner animado, no del overlay */
+  height: 40px;
+  /* Tamaño del spinner animado */
+  position: relative;
+  /* O `absolute`, dependiendo de cómo estén diseñados los puntos */
+  animation: sk-chase-dot-move 2.0s infinite ease-in-out;
+  /* Asegúrate de que no haya `top`, `left`, `width: 100%`, `height: 100%` aquí. */
+  /* Estos solo le dan tamaño y animación al cuadrado base del spinner. */
+}
+
+/* Reglas para los puntos individuales del spinner y las animaciones */
 .sk-chase-dot {
   width: 100%;
   height: 100%;
@@ -20,7 +44,8 @@
   display: block;
   width: 25%;
   height: 25%;
-  background-color: #fff;
+  background-color: #d53542;
+  /* Color del punto */
   border-radius: 100%;
   animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
 }
@@ -71,12 +96,6 @@
 
 .sk-chase-dot:nth-child(6):before {
   animation-delay: -0.6s;
-}
-
-@keyframes sk-chase {
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes sk-chase-dot {
