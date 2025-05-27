@@ -133,14 +133,6 @@ export default function Perfil() {
                 onChange={handleChange}
               />
               <input
-                type="text"
-                placeholder="Apellido"
-                className="w-full px-3 py-2 border rounded"
-                name="apellido"
-                value={formData.apellido}
-                onChange={handleChange}
-              />
-              <input
                 type="email"
                 placeholder="Correo"
                 className="w-full px-3 py-2 border rounded"
